@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.dao;
 
 import com.github.zhangkaitao.shiro.chapter16.entity.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -60,6 +61,7 @@ public class UserDaoImpl implements UserDao {
         jdbcTemplate.update(sql, userId);
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public User findOne(Long userId) {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where id=?";
@@ -70,13 +72,14 @@ public class UserDaoImpl implements UserDao {
         return userList.get(0);
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public List<User> findAll() {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(User.class));
     }
 
-
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public User findByUsername(String username) {
         String sql = "select id, organization_id, username, password, salt, role_ids as roleIdsStr, locked from sys_user where username=?";

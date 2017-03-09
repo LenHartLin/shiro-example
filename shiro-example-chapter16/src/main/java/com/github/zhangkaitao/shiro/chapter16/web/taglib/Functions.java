@@ -7,6 +7,7 @@ import com.github.zhangkaitao.shiro.chapter16.service.OrganizationService;
 import com.github.zhangkaitao.shiro.chapter16.service.ResourceService;
 import com.github.zhangkaitao.shiro.chapter16.service.RoleService;
 import com.github.zhangkaitao.shiro.spring.SpringUtils;
+
 import org.springframework.util.CollectionUtils;
 
 import java.util.Collection;
@@ -18,7 +19,8 @@ import java.util.Collection;
  */
 public class Functions {
 
-    public static boolean in(Iterable iterable, Object element) {
+    @SuppressWarnings("rawtypes")
+	public static boolean in(Iterable iterable, Object element) {
         if(iterable == null) {
             return false;
         }

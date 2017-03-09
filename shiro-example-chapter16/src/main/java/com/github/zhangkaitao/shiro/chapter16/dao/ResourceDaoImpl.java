@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.dao;
 
 import com.github.zhangkaitao.shiro.chapter16.entity.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -64,7 +65,8 @@ public class ResourceDaoImpl implements ResourceDao {
     }
 
 
-    @Override
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
     public Resource findOne(Long resourceId) {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource where id=?";
         List<Resource> resourceList = jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class), resourceId);
@@ -74,7 +76,8 @@ public class ResourceDaoImpl implements ResourceDao {
         return resourceList.get(0);
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public List<Resource> findAll() {
         final String sql = "select id, name, type, url, permission, parent_id, parent_ids, available from sys_resource order by concat(parent_ids, id) asc";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Resource.class));

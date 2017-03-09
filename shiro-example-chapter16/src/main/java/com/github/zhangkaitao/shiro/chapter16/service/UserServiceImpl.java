@@ -2,6 +2,7 @@ package com.github.zhangkaitao.shiro.chapter16.service;
 
 import com.github.zhangkaitao.shiro.chapter16.dao.UserDao;
 import com.github.zhangkaitao.shiro.chapter16.entity.User;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -79,7 +80,8 @@ public class UserServiceImpl implements UserService {
      * @param username
      * @return
      */
-    public Set<String> findRoles(String username) {
+    @SuppressWarnings("unchecked")
+	public Set<String> findRoles(String username) {
         User user =findByUsername(username);
         if(user == null) {
             return Collections.EMPTY_SET;
@@ -92,7 +94,8 @@ public class UserServiceImpl implements UserService {
      * @param username
      * @return
      */
-    public Set<String> findPermissions(String username) {
+    @SuppressWarnings("unchecked")
+	public Set<String> findPermissions(String username) {
         User user =findByUsername(username);
         if(user == null) {
             return Collections.EMPTY_SET;

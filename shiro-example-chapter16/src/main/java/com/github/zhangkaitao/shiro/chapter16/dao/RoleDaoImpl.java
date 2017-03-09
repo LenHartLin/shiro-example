@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.dao;
 
 import com.github.zhangkaitao.shiro.chapter16.entity.Role;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,7 +59,7 @@ public class RoleDaoImpl implements RoleDao {
         jdbcTemplate.update(sql, roleId);
     }
 
-
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public Role findOne(Long roleId) {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role where id=?";
@@ -69,7 +70,8 @@ public class RoleDaoImpl implements RoleDao {
         return roleList.get(0);
     }
 
-    @Override
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+	@Override
     public List<Role> findAll() {
         final String sql = "select id, role, description, resource_ids as resourceIdsStr, available from sys_role";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Role.class));

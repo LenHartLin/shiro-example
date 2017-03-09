@@ -8,7 +8,11 @@ import java.io.Serializable;
  * <p>Version: 1.0
  */
 public class Organization implements Serializable {
-    private Long id; //编号
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long id; //编号
     private String name; //组织机构名称
     private Long parentId; //父编号
     private String parentIds; //父编号列表，如1/2/

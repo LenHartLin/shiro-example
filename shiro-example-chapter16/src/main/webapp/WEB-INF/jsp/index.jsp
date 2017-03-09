@@ -15,10 +15,12 @@
     获取源码：<a href="https://github.com/zhangkaitao/shiro-example" target="_blank">https://github.com/zhangkaitao/shiro-example</a>
 </div>
 <div class="ui-layout-west">
-    功能菜单<br/>
+    <h5>功能菜单</h5>
+    <div style="font-size:12px;">
     <c:forEach items="${menus}" var="m">
-        <a href="${pageContext.request.contextPath}/${m.url}" target="content">${m.name}</a><br/>
+        <c:if test="${m.parentId!=0 }">|---${m.parentId }</c:if><a href="${pageContext.request.contextPath}/${m.url}" target="content">${m.name}</a><br/>
     </c:forEach>
+    </div>
 </div>
 
 

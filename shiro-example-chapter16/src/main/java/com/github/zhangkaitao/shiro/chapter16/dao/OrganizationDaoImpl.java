@@ -1,6 +1,7 @@
 package com.github.zhangkaitao.shiro.chapter16.dao;
 
 import com.github.zhangkaitao.shiro.chapter16.entity.Organization;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -61,7 +62,7 @@ public class OrganizationDaoImpl implements OrganizationDao {
         jdbcTemplate.update(deleteDescendantsSql, organization.makeSelfAsParentIds() + "%");
     }
 
-
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public Organization findOne(Long organizationId) {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization where id=?";
@@ -72,12 +73,14 @@ public class OrganizationDaoImpl implements OrganizationDao {
         return organizationList.get(0);
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public List<Organization> findAll() {
         final String sql = "select id, name, parent_id, parent_ids, available from sys_organization";
         return jdbcTemplate.query(sql, new BeanPropertyRowMapper(Organization.class));
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     @Override
     public List<Organization> findAllWithExclude(Organization excludeOraganization) {
         //TODO 改成not exists 利用索引

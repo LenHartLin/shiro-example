@@ -13,7 +13,11 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public class User implements Serializable {
-    private Long id; //编号
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private Long id; //编号
     private Long organizationId; //所属公司
     private String username; //用户名
     private String password; //密码
